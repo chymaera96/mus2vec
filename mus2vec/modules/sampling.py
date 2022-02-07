@@ -1,6 +1,6 @@
 import numpy as np
 import torch
-import utils 
+from .utils import *
 
 
 del_p = 16
@@ -42,7 +42,7 @@ class SamplerMus2vec:
                     cqt_r1 = np.transpose(r1,(0,2,1)).reshape(-1,r1.shape[1])
                     cqt_r2 = np.transpose(r2,(0,2,1)).reshape(-1,r2.shape[1])
                     
-                    if utils.distance(cqt_l1,cqt_l2) >= utils.distance(cqt_r1,cqt_r2):
+                    if distance(cqt_l1,cqt_l2) >= distance(cqt_r1,cqt_r2):
                         i_p = np.random.randint(i_a, min(i_a + del_p,len(beat_segments) - 1) + 1)
                         i_n = np.random.randint(max(i_a - del_n_max, 0), max(i_a - del_n_min, 0) + 1)
                     else:
